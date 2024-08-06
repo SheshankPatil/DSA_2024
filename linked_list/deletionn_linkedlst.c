@@ -19,7 +19,7 @@ void traversal(struct node* ptr)
     }
 }
 
-
+//deleteing the head
 struct node*deletionatbegin(struct node*head)
 {
     struct node*ptr=head;
@@ -29,7 +29,7 @@ struct node*deletionatbegin(struct node*head)
 
 }
 
-
+//deleting at an index 
 struct node*deleteatindex(struct node*head,int index)
 {
     struct node*p=head;
@@ -43,6 +43,52 @@ struct node*deleteatindex(struct node*head,int index)
     free(q);
     return head;
 }
+
+//deleting the last node
+
+struct node*deletionatlast(struct node*head)
+{
+    struct node*p;
+    struct node*q;
+    p=head;
+    q=head->next;
+    while (q->next!=NULL) 
+    {
+        p=p->next;
+        q=q->next;
+    }
+    p->next=NULL;
+    free(q);
+    return head;
+
+}
+
+
+//delete for the given element
+struct node*deleteforthedata(struct node*head,int data)
+{
+    struct node*p=head;
+    struct node*q=head->next;
+    while (q->data!=data && q->next!=NULL) 
+    {
+        p=p->next;
+        q=q->next;
+    }
+    if (q->data==data) 
+    {
+        p->next=q->next;
+        free(q);
+    }
+    else 
+    {
+        printf("the value was not found in the list");
+    }
+
+    return head;
+
+}
+
+
 
 int main()
 {
@@ -73,7 +119,12 @@ int main()
     printf("\n");
 
 
-   head=deleteatindex(head,2);
+
+    head=deleteforthedata(head, 21);
+
+    //head=deletionatlast(head);
+
+   //head=deleteatindex(head,2);
 
     //head=deletionatbegin(head);
 
