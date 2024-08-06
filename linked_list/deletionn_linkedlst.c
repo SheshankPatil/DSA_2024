@@ -29,6 +29,21 @@ struct node*deletionatbegin(struct node*head)
 
 }
 
+
+struct node*deleteatindex(struct node*head,int index)
+{
+    struct node*p=head;
+    struct node*q=head->next;
+    for (int i=0; i<index-1;i++) 
+    {
+        p=p->next;
+        q=q->next;
+    }
+    p->next=q->next;
+    free(q);
+    return head;
+}
+
 int main()
 {
     struct node *head;
@@ -58,10 +73,11 @@ int main()
     printf("\n");
 
 
+   head=deleteatindex(head,2);
 
-    head=deletionatbegin(head);
+    //head=deletionatbegin(head);
 
-    
+
     traversal(head);
 
 
