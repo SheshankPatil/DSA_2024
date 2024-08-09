@@ -9,14 +9,18 @@ struct node
 };
 
 
-void traversal(struct node* ptr)
+void traversal(struct node* head)
 {
-    while (ptr!=NULL) {
+    struct node*p=head
+
+    while (p!=head) {
     
     
-    printf("%d\n",ptr->data);
-    ptr=ptr->next;
+    printf("%d\n",p->data);
+    p=p->next;
     }
+
+    return head;
 }
 
 int main()
