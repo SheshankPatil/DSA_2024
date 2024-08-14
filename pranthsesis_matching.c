@@ -58,37 +58,6 @@ char pop(struct stack*ptr)
 }
 
 
-int parathesismatch(char*exp)
-{
-    struct stack*pp=(struct stack*)malloc(sizeof(struct stack));
-    pp->size=100;
-    pp->top=-1;
-    pp->arr=(char*)malloc(pp->size*sizeof(char));
-
-    for (int i = 0;exp[i]!='\0'; i++) {
-        if (exp[i]=='(' || exp[i]=='{' || exp[i]== '[') 
-        {
-            push(pp, exp[i]);
-        }
-        else if (exp[i]==')'||exp[i]=='}'||exp[i]==']') 
-        {
-            if(isempty(pp))
-            {
-                return 0;
-            }
-            else {
-                pop(pp);
-            }
-        }
-    }
-    if (isempty(pp)) 
-    {
-        return 1; 
-    }
-    else {
-        return 0;
-    }
-}
 
 int match(char a,char b)
 {
@@ -113,9 +82,50 @@ int match(char a,char b)
     else {
         return 0;
     }
-
-
 }
+
+char stacktop(struct stack*sp)
+{
+    return sp->arr[sp->top];
+}
+
+
+int parathesismatch(char*exp)
+{
+    struct stack*pp=(struct stack*)malloc(sizeof(struct stack));
+    pp->size=100;
+    pp->top=-1;
+    pp->arr=(char*)malloc(pp->size*sizeof(char));
+
+    for (int i = 0;exp[i]!='\0'; i++) {
+        if (exp[i]=='(' || exp[i]=='{' || exp[i]== '[') 
+        {
+            push(pp, exp[i]);
+        }
+        else if (exp[i]==')'||exp[i]=='}'||exp[i]==']') 
+        {
+            if(isempty(pp))
+            {
+                return 0;
+            }
+            else {
+                char popped_ch = pop(pp);
+                if(match(popped_ch,exp[i]))
+                {
+                    return 0;
+                }
+            }
+        }
+    }
+    if (isempty(pp)) 
+    {
+        return 1; 
+    }
+    else {
+        return 0;
+    }
+}
+
 
 
 
@@ -124,7 +134,7 @@ int match(char a,char b)
 int main()
 {
 
-    char*exp="[8*9]";
+    char*exp="[8*24+3729*2212+33+42+1](44+1)";
     if (parathesismatch(exp)) 
     {
         printf("the paranthsesis are matching");
