@@ -56,7 +56,6 @@ int pop(struct stack*ptr)
         int value=ptr->arr[ptr->top];
         ptr->top--;
         return value;
-
     }
 
 }
