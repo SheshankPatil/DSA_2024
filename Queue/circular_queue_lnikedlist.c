@@ -20,7 +20,7 @@ void linkedlisttraversal(struct node*ptr)
     }
 }
 
-void enqueue(struct node *f, struct node *r, int val) 
+void enqueue(int val) 
 {
     struct node *n; 
     n=(struct node *)malloc(sizeof(struct node));
@@ -42,11 +42,28 @@ void enqueue(struct node *f, struct node *r, int val)
     }
 }
 
+int dequqe(struct node*f)
+{
+    int a;
+    if(f==NULL)
+    {
+        printf("the queue is empty");
+    }
+    else 
+    {
+    a=f->data;
+    f=f->next;
+    }
+    return a;
+}
 
 
 int main() {
   linkedlisttraversal(f);
-  enqueue(f,r,10);
-  enqueue(f,r,20);
+  enqueue(10);
+  enqueue(20);
+  enqueue(30);
   linkedlisttraversal(f);
+  printf("dequeued elemnts\n");
+  printf("%d\n",dequqe(f));
 }
