@@ -29,7 +29,7 @@ int binarysearch(int arr[],int size,int element)
 int main()
 {
     int arr[10]={1,3,4,6,7,8,9,66};
-    int indevval=binarysearch(arr,10,3);
+    int indevval=binarysearch(arr,10,6);
     printf("%d",indevval);
 
 
