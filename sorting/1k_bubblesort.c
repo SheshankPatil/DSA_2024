@@ -1,6 +1,7 @@
 #include <stdio.h>
-// #include <stdlib.h>
+#include <stdlib.h>
 
+#define NUM_INPUTS 10000
 
 void prinarray(int*A,int n)
 {
@@ -11,16 +12,13 @@ void prinarray(int*A,int n)
     printf("\n");
 }
 
-
-
-
 void bubblesortadaptive(int *A,int a)
 {
     int temp;
     int issorted=0;
     for (int i = 0; i < a-1; i++) 
     {
-        printf("now runnning pass num %d\n",i+1);
+        // printf("now runnning pass num %d\n",i+1);
         issorted=1;
         for (int j = 0; j < a-1-i; j++) 
         {
@@ -40,17 +38,38 @@ void bubblesortadaptive(int *A,int a)
 }
 
 
-
 int main()
 {
-    // int A[]={1,45,7,8,6,4,2,8};
-    int A[]={1,3,4,5};
-    int n=4;
-    prinarray(A,n);
-    bubblesortadaptive(A,n);
-    printf("\n");
-    prinarray(A,n);
+	int arr[NUM_INPUTS];
+	FILE *file;
+
+	file = fopen("inputs.txt", "r");
+	if (file == NULL)
+	{
+		perror("Error opening file");
+		return -1;
+	}
+
+	for (int i = 0; i < NUM_INPUTS; i++)
+	{
+		if (fscanf(file, "%d", &arr[i]) != 1)
+		{
+			perror("Error reading from file");
+			fclose(file);
+			return -1;
+		}
+	}
+	fclose(file);
+	// for (int i = 0; i < NUM_INPUTS; i++)
+	{
+		// printf("%d\n", arr[i]);
+	}
+
+    bubblesortadaptive(arr, NUM_INPUTS);
+    // prinarray(arr, NUM_INPUTS);
+    
+
+	return 0;
 
 
-    return 0;
 }

@@ -11,7 +11,7 @@ struct node
 
 void traversal(struct node* head)
 {
-    struct node*p=head
+    struct node*p=head;
 
     while (p!=head) {
     
