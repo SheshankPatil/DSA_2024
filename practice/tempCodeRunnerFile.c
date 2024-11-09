@@ -1,1 +1,1 @@
-ispall
+selfproduct
