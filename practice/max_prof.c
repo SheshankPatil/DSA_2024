@@ -1,29 +1,20 @@
 #include <stdio.h>
 
 int maxprof(int *arr, int n) {
-  int low = arr[0];
-  int high;
-  int low_ind, high_ind, prof;
-
+  int maxprof = 0;
+  int minval = arr[0];
   for (int i = 0; i < n; i++) {
-    if (low > arr[i]) {
-      low = arr[i];
-      low_ind = i;
+    if (minval > arr[i]) {
+      minval = arr[i];
+    } else if (arr[i] - minval > maxprof) {
+      maxprof = arr[i] - minval;
     }
   }
-  for (int j = low_ind; j < n; j++) {
-    if (high < arr[j]) {
-      high = arr[j];
-      high_ind = j;
-    }
-  }
-  prof = high - low;
-
-  return prof;
+  return maxprof;
 }
 
 int main() {
-  int arr[] = {7, 6, 4, 3, 1};
+  int arr[] = {7, 6, 4, 7, 9};
   int n = (sizeof(arr) / sizeof(int));
   printf("%d", maxprof(arr, n));
 
